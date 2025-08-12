@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* Background Animation */
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #0a0f1f, #091729, #0d223a, #12263f);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.app-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Calculator Body */
+.pro-calculator {
+  width: 100%;
+  max-width: 375px;
+  background: rgba(15, 25, 40, 0.6);
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0 20px 50px rgba(0, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pro-calculator:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 255, 255, 0.25);
+}
+
+/* Display */
+.pro-display {
+  padding: 20px;
+  text-align: right;
+  margin-bottom: 20px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.previous-operand {
+  font-size: 1.4rem;
+  color: rgba(200, 255, 255, 0.6);
+}
+.current-operand {
+  font-size: 3.2rem;
+  font-weight: 500;
+  word-break: break-word;
+  color: #00ffe0;
+  text-shadow: 0 0 5px rgba(0,255,255,0.5);
+}
+
+/* Keypad */
+.pro-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+.pro-keypad .btn {
+  position: relative;
+  overflow: hidden;
+  height: 70px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: rgba(255, 255, 255, 0.05);
+  color: #EFFFFF;
+  backdrop-filter: blur(10px);
+}
+.pro-keypad .btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+.btn.zero {
+  grid-column: span 2;
+  text-align: left;
+  padding-left: 30px;
+}
+
+/* History Panel */
+.history-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  height: 100%;
+  width: 300px;
+  background: rgba(20, 25, 40, 0.95);
+  backdrop-filter: blur(15px);
+  border-left: 1px solid rgba(255,255,255,0.05);
+  padding: 20px;
+  transition: right 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  z-index: 999;
+  overflow-y: auto;
+}
+.history-panel.active {
+  right: 0;
+  opacity: 1;
+}
+.history-title {
+  text-align: center;
+  color: #00ffe0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+}
+.close-history {
+  background: transparent;
+  border: none;
+  color: #00ffe0;
+  font-size: 1.4rem;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.history-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.history-expression {
+  font-size: 0.9rem;
+  color: rgba(200, 255, 255, 0.6);
+}
+.history-result {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #00ffe0;
+}
+.no-history {
+  text-align: center;
+  color: rgba(200, 255, 255, 0.4);
+  margin-top: 20px;
+}
+
+/* Toggle Button */
+.history-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px; /* Desktop default right */
+  background: linear-gradient(135deg, #00ffe0, #0090ff);
+  color: #000;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,255,255,0.3);
+  transition: transform 0.2s ease;
+}
+.history-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* Small screen me left side */
+@media (max-width: 600px) {
+  .history-toggle {
+    left: 20px;
+    right: auto;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .pro-display {
+    padding: 15px;
+    min-height: 100px;
+  }
+  .previous-operand {
+    font-size: 1.2rem;
+  }
+  .current-operand {
+    font-size: 2.4rem;
+  }
+  .pro-keypad .btn {
+    height: 60px;
+    font-size: 1.4rem;
+  }
+}
